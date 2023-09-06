@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface BookRepository {
-
     Book save(Book book);
 
     List<Book> findAll();

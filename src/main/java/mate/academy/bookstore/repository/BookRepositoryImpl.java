@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BookRepositoryImpl implements BookRepository {
-
     private final SessionFactory sessionFactory;
 
     @Autowired
