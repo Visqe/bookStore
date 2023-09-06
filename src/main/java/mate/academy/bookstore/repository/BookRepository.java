@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public interface BookRepository {
     Book save(Book book);
 
-    List<Book> findAll();
+    List<Book> getAll();
 
     Optional<Book> findById(Long id);
 }
