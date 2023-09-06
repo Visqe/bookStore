@@ -12,4 +12,6 @@ public interface BookService {
     List<BookResponseDto> getAll();
 
     BookResponseDto getById(Long id);
+
+    void deleteById(Long id);
 }
