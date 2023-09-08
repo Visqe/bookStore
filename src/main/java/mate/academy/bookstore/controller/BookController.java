@@ -1,6 +1,7 @@
 package mate.academy.bookstore.controller;
 
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.BookResponseDto;
@@ -24,8 +25,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<BookResponseDto> getAll() {
-        return bookService.getAll();
+    public List<BookResponseDto> getAll(Pageable pageable) {
+        return bookService.getAll(pageable);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
