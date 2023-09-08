@@ -28,6 +28,7 @@ public class BookController {
         return bookService.getAll();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getById(id);
@@ -46,7 +47,7 @@ public class BookController {
 
     @PutMapping("/{id}")
     public BookDto update(@PathVariable Long id,
-                          @RequestBody CreateBookRequestDto createBookRequestDto) {
+                          @Valid @RequestBody CreateBookRequestDto createBookRequestDto) {
         return bookService.update(id, createBookRequestDto);
     }
 
