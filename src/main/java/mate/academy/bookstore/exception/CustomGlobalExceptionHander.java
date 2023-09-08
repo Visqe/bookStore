@@ -35,7 +35,7 @@ public class CustomGlobalExceptionHander extends ResponseEntityExceptionHandler 
     }
 
     private Object getErrorMessage(ObjectError e) {
-        if(e instanceof FieldError) {
+        if (e instanceof FieldError) {
             String field = ((FieldError) e).getField();
             String message = e.getDefaultMessage();
             return field + " " + message;
