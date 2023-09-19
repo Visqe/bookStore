@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-stock-admin
+      author: visqe
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: email, value: admin@example.com}
+              - column: {name: password, value: "$2a$10$aDqMWSP9MNE33NsNI5aMqOk0Rt5rhSSQn4FJTYX1Mkm0MoI3tb.l."}
+              - column: {name: first_name, value: testFirstName1}
+              - column: {name: last_name, value: testLastName1}
+        - insert:
+            tableName: user_role
+            columns:
+              - column: {name: user_id, valueComputed: (SELECT id FROM users WHERE email = 'admin@example.com')}
+              - column: {name: role_id, valueComputed: (SELECT id FROM roles WHERE name = 'ROLE_ADMIN')}
+
