@@ -1,5 +1,6 @@
 package mate.academy.bookstore.exception;
 
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,9 +21,9 @@ public class CustomGlobalExceptionHander extends ResponseEntityExceptionHandler 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
-            HttpHeaders headers,
-            HttpStatusCode status,
-            WebRequest request
+            @NotNull HttpHeaders headers,
+            @NotNull HttpStatusCode status,
+            @NotNull WebRequest request
     ) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
@@ -30,7 +31,7 @@ public class CustomGlobalExceptionHander extends ResponseEntityExceptionHandler 
         List<Object> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(this::getErrorMessage)
                 .toList();
-        body.put("erros", errors);
+        body.put("errors", errors);
         return new ResponseEntity<>(body, headers, status);
     }
 
@@ -42,4 +43,5 @@ public class CustomGlobalExceptionHander extends ResponseEntityExceptionHandler 
         }
         return e.getDefaultMessage();
     }
+
 }
