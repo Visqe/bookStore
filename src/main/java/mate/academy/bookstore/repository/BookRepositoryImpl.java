@@ -23,7 +23,7 @@ public class BookRepositoryImpl implements BookRepository {
             entityManager.persist(book);
             transaction.commit();
             return book;
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
@@ -36,7 +36,7 @@ public class BookRepositoryImpl implements BookRepository {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery(
                     "FROM Book", Book.class).getResultList();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Cannot get all books from DB");
         }
     }
@@ -46,7 +46,7 @@ public class BookRepositoryImpl implements BookRepository {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             Book book = entityManager.find(Book.class, id);
             return Optional.ofNullable(book);
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             throw new RuntimeException("Cannot get book by id " + id);
         }
     }
