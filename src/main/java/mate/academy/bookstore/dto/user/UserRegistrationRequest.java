@@ -7,8 +7,8 @@ import lombok.Data;
 import mate.academy.bookstore.validation.FieldMatch;
 
 @FieldMatch(
-        password = "password",
-        repeatPassword = "repeatPassword",
+        field = "password",
+        fieldMatch = "repeatPassword",
         message = "The password fields must match")
 @Data
 public class UserRegistrationRequest {
@@ -33,5 +33,6 @@ public class UserRegistrationRequest {
     @Size(min = 6, max = 50)
     private String lastName;
 
+    @NotBlank
     private String shippingAddress;
 }

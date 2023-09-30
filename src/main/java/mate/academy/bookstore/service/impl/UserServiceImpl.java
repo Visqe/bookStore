@@ -6,8 +6,8 @@ import mate.academy.bookstore.dto.user.UserRegistrationRequest;
 import mate.academy.bookstore.dto.user.UserResponseDto;
 import mate.academy.bookstore.exception.RegistrationExeption;
 import mate.academy.bookstore.mapper.UserMapper;
+import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.User;
-import mate.academy.bookstore.repository.RoleRepository;
 import mate.academy.bookstore.repository.UserRepository;
 import mate.academy.bookstore.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,25 +18,14 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
     @Override
-    public UserResponseDto register(UserRegistrationRequest request)
+    public UserResponseDto register(UserRegistrationRequest request, Set<Role> roles)
             throws RegistrationExeption {
         User newUser = createUserFromRequest(request);
-        newUser.setRoles(Set.of(roleRepository.findByName("ROLE_USER")));
-        User savedUser = userRepository.save(newUser);
-        return userMapper.toUserResponseDto(savedUser);
-    }
-
-    @Override
-    public UserResponseDto registerAdmin(UserRegistrationRequest request)
-            throws RegistrationExeption {
-        User newUser = createUserFromRequest(request);
-
-        newUser.setRoles(Set.of(roleRepository.findByName("ROLE_ADMIN")));
+        newUser.setRoles(roles);
         User savedUser = userRepository.save(newUser);
         return userMapper.toUserResponseDto(savedUser);
     }

@@ -18,8 +18,8 @@ public @interface FieldMatch {
     String message() default "The repeatPassword must match password";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    String password();
-    String repeatPassword();
+    String field();
+    String fieldMatch();
 
     @Target({TYPE, ANNOTATION_TYPE})
     @Retention(RetentionPolicy.RUNTIME)

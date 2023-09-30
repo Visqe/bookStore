@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Data
@@ -17,5 +18,17 @@ public class Role {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
+
+    public enum RoleName implements GrantedAuthority {
+        ROLE_ADMIN,
+        ROLE_USER;
+
+        @Override
+        public String getAuthority() {
+            return name();
+        }
+    }
 }
+
+
 

@@ -19,6 +19,7 @@
         <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jjwt.version>0.11.5</jjwt.version>
+        <checkstyle.version>3.3.0</checkstyle.version>
     </properties>
     <dependencies>
         <dependency>
@@ -132,7 +133,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>${checkstyle.version}</version>
                 <executions>
                     <execution>
                         <phase>compile</phase>

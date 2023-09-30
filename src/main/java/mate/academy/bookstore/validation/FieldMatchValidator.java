@@ -11,14 +11,14 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
     @Override
     public void initialize(FieldMatch constraintAnnotation) {
-        this.firstObjName = constraintAnnotation.password();
-        this.secondObjName = constraintAnnotation.repeatPassword();
+        this.firstObjName = constraintAnnotation.field();
+        this.secondObjName = constraintAnnotation.fieldMatch();
     }
 
     @Override
-    public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        Object firstObj = new BeanWrapperImpl(o).getPropertyValue(firstObjName);
-        Object secondObj = new BeanWrapperImpl(o).getPropertyValue(secondObjName);
+    public boolean isValid(Object object, ConstraintValidatorContext constraintValidatorContext) {
+        Object firstObj = new BeanWrapperImpl(object).getPropertyValue(firstObjName);
+        Object secondObj = new BeanWrapperImpl(object).getPropertyValue(secondObjName);
         return Objects.equals(firstObj, secondObj);
     }
 }
