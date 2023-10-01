@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: inser-carts
+      author: visqe
+      changes:
+        - insert:
+            tableName: carts
+            columns:
+              - column: { name: user_id, valueComputed: (SELECT id FROM users WHERE email = 'user1@example.com') }
+        - insert:
+            tableName: carts
+            columns:
+              - column: { name: user_id, valueComputed: (SELECT id FROM users WHERE email = 'user2@example.com') }
