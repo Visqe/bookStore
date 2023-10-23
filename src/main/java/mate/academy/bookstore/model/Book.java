@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.ISBN;
 
 @Entity
 @Data
@@ -24,7 +25,8 @@ public class Book {
     private String title;
     @Column(nullable = false)
     private String author;
-    @Column(nullable = false, unique = true)
+    @ISBN
+    @Column(nullable = false)
     private String isbn;
     @Column(nullable = false)
     private BigDecimal price;
