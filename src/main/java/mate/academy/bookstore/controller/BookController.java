@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.bookstore.dto.book.BookDto;
+import mate.academy.bookstore.dto.book.BookResponseDto;
 import mate.academy.bookstore.dto.book.CreateBookRequestDto;
 import mate.academy.bookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
@@ -32,27 +32,27 @@ public class BookController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new Book", description = "create a new book")
-    public BookDto save(@RequestBody @Valid CreateBookRequestDto createBookRequestDto) {
+    public BookResponseDto save(@RequestBody @Valid CreateBookRequestDto createBookRequestDto) {
         return bookService.save(createBookRequestDto);
     }
 
     @GetMapping
     @Operation(summary = "Get Books", description = "get all books")
-    public List<BookDto> getAll(Pageable pageable) {
+    public List<BookResponseDto> getAll(Pageable pageable) {
         return bookService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Book", description = "get book by id")
-    public BookDto getBookById(@PathVariable Long id) {
+    public BookResponseDto getBookById(@PathVariable Long id) {
         return bookService.getById(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Update Book", description = "update book by id")
-    public BookDto update(@PathVariable Long id,
-                          @Valid @RequestBody CreateBookRequestDto createBookRequestDto) {
+    public BookResponseDto update(@PathVariable Long id,
+                                  @Valid @RequestBody CreateBookRequestDto createBookRequestDto) {
         return bookService.update(id, createBookRequestDto);
     }
 
